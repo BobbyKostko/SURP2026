@@ -38,12 +38,6 @@ def process_fits(filenames, temps = temps, hot_mask = None):
         print(filename)
         data = fits.getdata(filename)
 
-        #hot mask corrections
-        if hot_mask is not None:
-            hot_mask = fits.getdata(hot_mask)
-            data = data * hot_mask
-        data[data < 0] = 0
-
         mean = np.mean(data)
         std = np.std(data)
         var = std**2
